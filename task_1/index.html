@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collapsible Sidebar</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div class="logo" id="logo">
+                <input type="file" id="logoInput" accept="image/*" style="display:none;">
+                <img id="logoImg" src="" alt="Logo"
+                    style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                <span class="logo-pencil"><i class="fas fa-pen"></i></span>
+            </div>
+            <nav class="nav-links">
+                <a href="#"><i class="fas fa-home"></i><span>Home</span></a>
+                <a href="#"><i class="fas fa-user"></i><span>Profile</span></a>
+                <a href="#"><i class="fas fa-cog"></i><span>Settings</span></a>
+                <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </nav>
+            <button id="toggleBtn" class="toggle-btn">
+                <i id="toggleIcon" class="fas fa-angle-left"></i>
+            </button>
+        </aside>
+
+        <main class="main-content">
+            <h1>Welcome to the Dashboard</h1><br>
+            <p id="text">This is a sidebar section that can open and close when the user clicks the button.</p>
+            <br>
+            <p id="text"> The sidebar is responsive on mobile screens.</p>
+
+        </main>
+    </div>
+</body>
+
+</html>
