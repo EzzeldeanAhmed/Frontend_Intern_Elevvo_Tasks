@@ -128,6 +128,13 @@ body {
 
 .toggle-btn i {
   color: #fff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .sidebar.collapsed .logo {
@@ -142,17 +149,31 @@ body {
 }
 
 .toggle-btn {
-  position: absolute;
-  bottom: 360px;
-  left: 50%;
-  transform: translateX(-50%);
   background-color: #1abc9c;
   border: none;
-  padding: 10px 12px;
+  padding: 6px 8px;
   border-radius: 4px;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: white;
   cursor: pointer;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 30px;
+}
+
+/* When sidebar is collapsed, adjust button styling but keep it in flow */
+.sidebar.collapsed .toggle-btn {
+  margin: 15px auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-content {
