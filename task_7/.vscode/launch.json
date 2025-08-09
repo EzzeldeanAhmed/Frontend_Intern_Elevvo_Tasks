@@ -9,7 +9,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Open index.html",
-            "file": "c:\\Users\\karee\\OneDrive\\Desktop\\elevvo\\tasks\\test\\index.html"
+            "file": "c:\\Users\\karee\\OneDrive\\Desktop\\elevvo\\tasks\\task_7\\index.html"
         }
     ]
 }
