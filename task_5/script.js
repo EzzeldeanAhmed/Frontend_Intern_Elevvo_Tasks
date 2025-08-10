@@ -183,13 +183,7 @@ class CTAManager {
                 button.textContent = originalText;
                 button.style.background = '';
             }, 1500);
-        } else if (button.textContent.includes('Demo') || button.textContent.includes('Watch')) {
-            button.textContent = 'Loading...';
-            
-            setTimeout(() => {
-                this.showModal('Demo Video', 'In a real application, this would open a demo video or schedule a call.');
-                button.textContent = originalText;
-            }, 1000);
+        
         } else if (button.textContent.includes('Contact') || button.textContent.includes('Sales')) {
             this.showModal('Contact Sales', 'Our sales team would love to hear from you! In a real app, this would open a contact form.');
         }
