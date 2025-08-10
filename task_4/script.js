@@ -1,4 +1,3 @@
-// Blog data - sample posts
 const blogPosts = [
     {
         id: 1,
@@ -94,13 +93,11 @@ const blogPosts = [
     }
 ];
 
-// State management
 let currentPage = 1;
 let currentCategory = 'all';
 let currentSearchTerm = '';
 const postsPerPage = 6;
 
-// DOM elements
 const postsContainer = document.getElementById('postsContainer');
 const searchInput = document.getElementById('searchInput');
 const categoryFilter = document.getElementById('categoryFilter');
@@ -109,29 +106,24 @@ const nextBtn = document.getElementById('nextBtn');
 const pageInfo = document.getElementById('pageInfo');
 const noResults = document.getElementById('noResults');
 
-// Initialize the blog
 document.addEventListener('DOMContentLoaded', function() {
     renderPosts();
     setupEventListeners();
 });
 
-// Event listeners
 function setupEventListeners() {
-    // Search functionality
     searchInput.addEventListener('input', debounce(function(e) {
         currentSearchTerm = e.target.value.toLowerCase();
         currentPage = 1;
         renderPosts();
     }, 300));
 
-    // Category filter
     categoryFilter.addEventListener('change', function(e) {
         currentCategory = e.target.value;
         currentPage = 1;
         renderPosts();
     });
 
-    // Pagination
     prevBtn.addEventListener('click', function() {
         if (currentPage > 1) {
             currentPage--;
@@ -151,7 +143,6 @@ function setupEventListeners() {
     });
 }
 
-// Debounce function for search input
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -164,7 +155,6 @@ function debounce(func, wait) {
     };
 }
 
-// Filter posts based on category and search term
 function getFilteredPosts() {
     return blogPosts.filter(post => {
         const matchesCategory = currentCategory === 'all' || post.category === currentCategory;
@@ -174,7 +164,6 @@ function getFilteredPosts() {
     });
 }
 
-// Get posts for current page
 function getCurrentPagePosts() {
     const filteredPosts = getFilteredPosts();
     const startIndex = (currentPage - 1) * postsPerPage;
@@ -182,13 +171,11 @@ function getCurrentPagePosts() {
     return filteredPosts.slice(startIndex, endIndex);
 }
 
-// Format date
 function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
-// Get category icon
 function getCategoryIcon(category) {
     const categoryIcons = {
         'tech': 'fas fa-laptop-code',
@@ -198,7 +185,6 @@ function getCategoryIcon(category) {
     return categoryIcons[category] || 'fas fa-tag';
 }
 
-// Create post card HTML
 function createPostCard(post) {        
     return `
         <article class="post-card">
@@ -233,12 +219,10 @@ function createPostCard(post) {
     `;
 }
 
-// Render posts and pagination
 function renderPosts() {
     const filteredPosts = getFilteredPosts();
     const currentPagePosts = getCurrentPagePosts();
     
-    // Show/hide no results message
     if (filteredPosts.length === 0) {
         postsContainer.style.display = 'none';
         document.getElementById('pagination').style.display = 'none';
@@ -250,33 +234,24 @@ function renderPosts() {
         noResults.style.display = 'none';
     }
 
-    // Render post cards
     postsContainer.innerHTML = currentPagePosts.map(post => createPostCard(post)).join('');
-
-    // Update pagination
     updatePagination(filteredPosts.length);
-
-    // Add staggered animation to cards
     animateCards();
 }
 
-// Update pagination controls
 function updatePagination(totalPosts) {
     const totalPages = Math.ceil(totalPosts / postsPerPage);
     
-    // Update page info
     pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
     
-    // Update button states
+    
     prevBtn.disabled = currentPage === 1;
     nextBtn.disabled = currentPage === totalPages;
     
-    // Hide pagination if only one page
     const paginationElement = document.getElementById('pagination');
     paginationElement.style.display = totalPages <= 1 ? 'none' : 'flex';
 }
 
-// Animate cards with staggered effect
 function animateCards() {
     const cards = document.querySelectorAll('.post-card');
     cards.forEach((card, index) => {
@@ -284,7 +259,6 @@ function animateCards() {
     });
 }
 
-// Smooth scroll to top
 function scrollToTop() {
     window.scrollTo({
         top: 0,
@@ -292,9 +266,7 @@ function scrollToTop() {
     });
 }
 
-// Add some interactive effects
 document.addEventListener('DOMContentLoaded', function() {
-    // Add hover effects to post cards
     document.addEventListener('mouseover', function(e) {
         if (e.target.closest('.post-card')) {
             const card = e.target.closest('.post-card');
@@ -309,16 +281,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Add click handler for read more links
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('read-more')) {
             e.preventDefault();
-            // In a real blog, this would navigate to the full post
             alert('This would navigate to the full blog post!');
         }
     });
 
-    // Add keyboard navigation for accessibility
     document.addEventListener('keydown', function(e) {
         if (e.key === 'ArrowLeft' && !prevBtn.disabled) {
             prevBtn.click();
@@ -328,7 +297,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Add loading state simulation (optional)
 function showLoadingState() {
     postsContainer.innerHTML = `
         <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
@@ -338,7 +306,6 @@ function showLoadingState() {
     `;
 }
 
-// Performance optimization: Intersection Observer for lazy loading
 const observerOptions = {
     root: null,
     rootMargin: '50px',
@@ -354,7 +321,6 @@ const cardObserver = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe new cards when they're added
 function observeNewCards() {
     const cards = document.querySelectorAll('.post-card');
     cards.forEach(card => {
